@@ -1,7 +1,9 @@
 import pygame,os
 from pygame.locals import *
-os.chdir("C:/Users/USER/Documents/Python/pygame/chess")
+
+os.chdir(os.path.dirname(__file__))
 BLANC=(255,255,255)
+
 def Positionnement(position):
 	if position=="Blanc":
 		table=[

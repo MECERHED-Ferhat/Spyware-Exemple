@@ -1,7 +1,13 @@
-import pygame,os
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+FPS = 50
+
+import pygame
 from pygame.locals import *
-os.chdir("C:/Users/USER/Documents/Python/pygame/chess")
 from Placement import Positionnement
+
+os.chdir(os.path.dirname(__file__))
+
 pygame.init()
 BLANC=(255,255,255)
 mouse_pos=old_mouse_pos=[-1,-1]
@@ -336,6 +342,7 @@ while menu_principale:
 
 			#Partie en cours
 while partie:
+	pygame.time.wait(FPS)
 	if mouse_pos!=[-1,-1]:
 		old_mouse_pos=mouse_pos
 	mouse_pos=[-1,-1]
