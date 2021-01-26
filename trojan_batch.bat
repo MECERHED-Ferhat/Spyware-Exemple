@@ -1,2 +1,2 @@
-"C:\Users\amel\AppData\Local\Programs\Python\Python39\python.exe" "C:\Users\amel\Desktop\trojan.py"
+"python" "C:\Users\USER\Desktop\Cours\Sys\projet\trojan\trojan.py"
 pause

