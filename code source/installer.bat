@@ -1,0 +1,1 @@
+pyinstaller input.pyw -F -w --distpath . --add-data "game;game" --name "Chess"
