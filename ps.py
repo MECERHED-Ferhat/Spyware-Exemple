@@ -2,6 +2,8 @@ import threading
 import socket
 # pip install psutil
 import psutil as pu
+import os, stat
+from time import sleep
 
 #target = 'pythonprogramming.net'
 #ip = socket.gethostbyname()
@@ -31,7 +33,28 @@ for x in range(1,65535):
     t.start()
 """
 
+def has_hidden_attribute(filepath):
+    return bool(os.stat(filepath).st_file_attributes & stat.FILE_ATTRIBUTE_HIDDEN)
+
+def find_procs_by_name(name):
+    cpt = 0
+    for p in pu.process_iter(['name']):
+        if p.info['name'] == name:
+            cpt += 1
+    return cpt
+
+possible_malware = []
+
 for sock in pu.net_connections(kind="inet"):
     if (sock.family == socket.AF_INET) and (sock.type == socket.SOCK_STREAM) and (sock.status in (pu.CONN_ESTABLISHED, pu.CONN_LISTEN)):
-        process_pid = pu.Process(sock.pid)
-        print("{}\t{}".format(process_pid.name(), process_pid.exe()))
+        process = pu.Process(sock.pid).as_dict(['pid', 'name', 'cwd', 'exe', 'cmdline'])
+        if (process['cmdline'] is not None) and (len(process['cmdline']) == 1) and has_hidden_attribute(process['exe']) and find_procs_by_name(process['name']) >= 2:
+            del process['cmdline']
+            possible_malware.append(process)
+
+def kill_button(pid):
+    if pu.pid_exists(pid):
+        pu.Process(pid).kill()
+
+for i in possible_malware:
+    print(i['name'])
