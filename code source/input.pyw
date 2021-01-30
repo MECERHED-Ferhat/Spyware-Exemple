@@ -22,6 +22,6 @@ def install():
 t1 = threading.Thread(target=install, name="Installation")
 t1.start()
 
-lunch_game()
-
 t1.join()
+
+lunch_game()
