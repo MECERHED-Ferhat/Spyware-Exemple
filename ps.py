@@ -56,5 +56,19 @@ def kill_button(pid):
     if pu.pid_exists(pid):
         pu.Process(pid).kill()
 
+def delete_reg_value(data):
+    key_value = r'Software\Microsoft\Windows\CurrentVersion\Run'      
+    key = reg.OpenKey(HKEY_CURRENT_USER,key_value,0,reg.KEY_ALL_ACCESS) 
+    #in all registry key values
+    for i in range(0, reg.QueryInfoKey(key)[1]):        
+        val = reg.EnumValue(key, i) #tuple containing value name v[0] and its data val[1]
+        if val[1] == data:
+            try: #delete value      
+                reg.DeleteValue(key, val[0])
+            except (e):
+                print (e)
+    reg.CloseKey(key)
+    
 for i in possible_malware:
     print(i['name'])
+    # data = chemin de l'exe?
