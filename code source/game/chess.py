@@ -4,7 +4,7 @@ FPS = 50
 
 import pygame
 from pygame.locals import *
-from game.placement import Positionnement
+from game.placement import positionnement
 
 def lunch_game():
 
