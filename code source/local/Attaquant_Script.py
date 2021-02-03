@@ -3,7 +3,6 @@ import socket, sounddevice as sd
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((socket.gethostname(), 4444))
 
-
 def callback(outdata, frames, time, status):
 	#336
 	msg = sock.recv(1008)
